@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreditCardManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpendAnalyzer</a> &gt; <a href="index.source.html" class="el_package">com.creditcard.model</a> &gt; <span class="el_source">CreditCardManager.java</span></div><h1>CreditCardManager.java</h1><pre class="source lang-java linenums">package com.creditcard.model;
+
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class CreditCardManager {
+
+<span class="fc" id="L12">    List&lt;Transaction&gt; transactions = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L13">    List&lt;UnusualSpend&gt; unusualSpendCustomerList = new ArrayList&lt;&gt;();</span>
+    CustomerManager customerManager;
+
+<span class="fc" id="L16">    public CreditCardManager(CustomerManager customerManager) {</span>
+<span class="fc" id="L17">        this.customerManager = customerManager;</span>
+<span class="fc" id="L18">    }</span>
+
+    public List&lt;Transaction&gt; getTransactions() {
+<span class="fc" id="L21">        return transactions;</span>
+    }
+
+    public void addTransaction(Transaction transaction) {
+<span class="fc" id="L25">        transactions.add(transaction);</span>
+<span class="fc" id="L26">    }</span>
+
+    public List&lt;Transaction&gt; getTransactionsOfTheMonth(Month month) {
+<span class="fc" id="L29">        List&lt;Transaction&gt; monthlyTransactions = transactions.stream()</span>
+<span class="fc" id="L30">                .filter(transaction -&gt; transaction.getTransactionDate().getMonth().equals(month))</span>
+<span class="fc" id="L31">                .collect(Collectors.toList());</span>
+<span class="fc" id="L32">        return monthlyTransactions;</span>
+    }
+
+    public List&lt;UnusualSpend&gt; getListOfUnusualSpendCustomer(double thresholdPercentage) {
+<span class="fc" id="L36">        List&lt;Transaction&gt; currentMonthTransactionList = this.getTransactionsOfTheMonth(LocalDate.now().getMonth());</span>
+<span class="fc" id="L37">        List&lt;Transaction&gt; previousMonthTransactionList = this.getTransactionsOfTheMonth(LocalDate.now().getMonth().minus(1));</span>
+<span class="fc" id="L38">        double multiplier = 1 + (thresholdPercentage / 100);</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        for (Transaction current : currentMonthTransactionList){</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">            for (Transaction previous : previousMonthTransactionList){</span>
+<span class="pc bpc" id="L41" title="1 of 4 branches missed.">                if (current.getCategory().equals(previous.getCategory()) &amp;&amp; current.getAmountSpend() &gt;= (1.5*previous.getAmountSpend())){</span>
+<span class="fc" id="L42">                    unusualSpendCustomerList.add(new UnusualSpend(current.getCategory(),</span>
+<span class="fc" id="L43">                            current.getAmountSpend() - previous.getAmountSpend(), previous.getAmountSpend(), current.getCustomerId()));</span>
+                }
+<span class="fc" id="L45">            }</span>
+<span class="fc" id="L46">        }</span>
+<span class="fc" id="L47">        return unusualSpendCustomerList;</span>
+    }
+
+    public void sendEmailAlert(List&lt;UnusualSpend&gt; unusualSpendCustomerList) {
+<span class="fc" id="L51">        Map&lt;Integer, List&lt;UnusualSpend&gt;&gt; spendByCustomer = unusualSpendCustomerList.stream()</span>
+<span class="fc" id="L52">                .collect(Collectors.groupingBy(UnusualSpend::getCustomerId));</span>
+
+<span class="fc" id="L54">        spendByCustomer.forEach((customerId, spends) -&gt; {</span>
+<span class="fc" id="L55">            double overallUnusualSpend = spends.stream().mapToDouble(UnusualSpend::getUnusualSpend).sum();</span>
+<span class="fc" id="L56">            double overallUsualSpend = spends.stream().mapToDouble(UnusualSpend::getUsualSpend).sum();</span>
+
+<span class="fc" id="L58">            Map&lt;Category, Double&gt; categoryWiseSpend = spends.stream()</span>
+<span class="fc" id="L59">                    .collect(Collectors.groupingBy(UnusualSpend::getCategory,</span>
+<span class="fc" id="L60">                            Collectors.summingDouble(UnusualSpend::getUnusualSpend)));</span>
+
+<span class="fc" id="L62">            StringBuilder stringBuilder = new StringBuilder();</span>
+
+<span class="fc bfc" id="L64" title="All 2 branches covered.">            for (Map.Entry&lt;Category, Double&gt; entry : categoryWiseSpend.entrySet()) {</span>
+<span class="fc" id="L65">                stringBuilder.append(&quot;* You spent Rs.&quot; + entry.getValue() + &quot; on &quot; + entry.getKey() + &quot;\n&quot;);</span>
+<span class="fc" id="L66">            }</span>
+
+<span class="fc" id="L68">            String customerName = customerManager.getCustomerById(customerId).getName();</span>
+<span class="fc" id="L69">            String customerEmail = customerManager.getCustomerById(customerId).getEmail();</span>
+
+<span class="fc" id="L71">            EmailService.sendEmail(customerName,customerEmail,overallUnusualSpend,overallUsualSpend, new String(stringBuilder));</span>
+<span class="fc" id="L72">        });</span>
+<span class="fc" id="L73">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,21 +1,21 @@
 package com.creditcard.test;
 
-import com.creditcard.model.EmailService;
+import com.creditcard.domain.service.EmailService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class EmailServiceTest {
     @Test
     void shouldAbleToSendEmailToCustomerWithGivenDetails(){
-        //Arrange
+        //arrange
         String customerName = "shruti";
         String customerEmail = "shruti1@gmail.com";
         double overallUnusualSpend = 1000;
         double overallUsualSpend = 300;
         String categoryWiseSpend = "You spent Rs.3000 on CLOTHING";
-        //Act
+        //act
         EmailService.sendEmail(customerName,customerEmail,overallUnusualSpend,overallUsualSpend,categoryWiseSpend);
-        //Assert
+        //assert
         Assertions.assertTrue(true);
     }
 }
