@@ -15,11 +15,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class TransactionTest {
     @Test
     void shouldAbleToCreatetransaction() throws InvalidCustomerIdException, InvalidTransactionIdException, InvalidCategoryException {
+        //Arrange
         int transactionId = 1001;
         int customerId = 1;
         double amountSpend = 50;
         LocalDate transactionDate = LocalDate.now();
-
+        //Act && Assert
         assertNotNull(Transaction.create(transactionId,customerId,amountSpend,Category.BOOKS,transactionDate));
     }
 

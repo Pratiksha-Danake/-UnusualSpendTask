@@ -9,7 +9,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class EmailService {
-    public static void sendEmail(Integer customerId,String name,String email, double overallUnusualSpend, String categoryWiseSpend) {
+    public static void sendEmail(String name, String email, double overallUnusualSpend, double overallUsualSpend, String categoryWiseSpend) {
         String fromEmail = "danakepratiksha1020@gmail.com";
         String toEmail = email;
         String password = "jdca jiof oufs exwz";
@@ -31,6 +31,8 @@ public class EmailService {
         });
 
             String body = "Unusual spending of Rs."+overallUnusualSpend+" detected!" +
+                    "\n" +
+                    "While your usual spend for last month was:" +overallUsualSpend +
                     "\n" +
                     "Hello "+name+"!\n" +
                     "\n" +

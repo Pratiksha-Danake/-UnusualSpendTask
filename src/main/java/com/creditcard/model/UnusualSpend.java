@@ -3,6 +3,12 @@ package com.creditcard.model;
 public class UnusualSpend {
     Category category;
     double unusualSpend;
+    double usualSpend;
+    int customerId;
+
+    public double getUsualSpend() {
+        return usualSpend;
+    }
 
     public Category getCategory() {
         return category;
@@ -16,10 +22,11 @@ public class UnusualSpend {
         return customerId;
     }
 
-    int customerId;
-    public UnusualSpend(Category category, double unusualSpend, int customerId) {
+
+    public UnusualSpend(Category category, double unusualSpend,double usualSpend, int customerId) {
         this.category = category;
         this.unusualSpend = unusualSpend;
+        this.usualSpend = usualSpend;
         this.customerId = customerId;
     }
 }

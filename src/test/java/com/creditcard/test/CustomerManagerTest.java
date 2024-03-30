@@ -12,16 +12,22 @@ public class CustomerManagerTest {
     CustomerManager customerManager = new CustomerManager();
     @Test
     void shouldAbleToSaveCustomerToTheList() throws InvalidCustomerIdException, InvalidCustomerNameException {
+        //Arrange && Act
         customerManager.saveCustomer(Customer.create(1,"Pratiksha Danake","danakepratiksha1020@gmail.com"));
         customerManager.saveCustomer(Customer.create(2,"Pratiksha","pratikshadanake2001@gmail.com"));
+        //Assert
         assertEquals(2,customerManager.getCustomers().size());
     }
 
     @Test
     void shouldAbleToReturnCustomerById() throws InvalidCustomerIdException, InvalidCustomerNameException {
+        //Arrange
         customerManager.saveCustomer(Customer.create(1,"Pratiksha Danake","danakepratiksha1020@gmail.com"));
         customerManager.saveCustomer(Customer.create(2,"Pratiksha","pratikshadanake2001@gmail.com"));
-        Customer expectedCusytomer = Customer.create(1,"Pratiksha Danake","danakepratiksha1020@gmail.com");
-        assertEquals(expectedCusytomer,customerManager.getCustomerById(1));
+        Customer expectedCustomer = Customer.create(1,"Pratiksha Danake","danakepratiksha1020@gmail.com");
+        //Act
+        Customer actualCustomer = customerManager.getCustomerById(1);
+        //Assert
+        assertEquals(expectedCustomer,actualCustomer);
     }
 }

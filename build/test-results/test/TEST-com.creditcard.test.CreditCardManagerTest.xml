@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.creditcard.test.CreditCardManagerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-03-17T13:35:37" hostname="DESKTOP-GUO1275" time="4.719">
+<testsuite name="com.creditcard.test.CreditCardManagerTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-03-20T18:41:09" hostname="DESKTOP-GUO1275" time="6.382">
   <properties/>
-  <testcase name="shouldAbleToSendEmailAlertToTheCustomerWhoHaveUnusualSpend()" classname="com.creditcard.test.CreditCardManagerTest" time="4.719"/>
+  <testcase name="shouldAbleToCreateListOfCustomersWhoHaveUnusualSpend()" classname="com.creditcard.test.CreditCardManagerTest" time="0.133"/>
+  <testcase name="shouldAbleToCreateCreditCardForCustomer()" classname="com.creditcard.test.CreditCardManagerTest" time="0.011"/>
+  <testcase name="shouldAbleToCreateCustomerWithGivenDetails()" classname="com.creditcard.test.CreditCardManagerTest" time="0.005"/>
+  <testcase name="shouldAbleToSendEmailAlertToTheCustomerWhoHaveUnusualSpend()" classname="com.creditcard.test.CreditCardManagerTest" time="6.21"/>
+  <testcase name="shouldAbleToSaveTransactionHistory()" classname="com.creditcard.test.CreditCardManagerTest" time="0.004"/>
+  <testcase name="shouldAbleToReturnOverallTransactionsOfMonth()" classname="com.creditcard.test.CreditCardManagerTest" time="0.004"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
