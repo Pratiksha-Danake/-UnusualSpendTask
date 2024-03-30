@@ -1,7 +1,9 @@
-package com.creditcard.domain.model;
+package com.creditcard;
 
-import com.creditcard.domain.dto.UnusualSpendCustomerDTO;
-import com.creditcard.domain.dto.UnusualSpend;
+import com.creditcard.domain.model.CustomerManager;
+import com.creditcard.domain.model.Transaction;
+import com.creditcard.dto.UnusualSpendCustomerDTO;
+import com.creditcard.dto.UnusualSpend;
 import com.creditcard.domain.service.AlertComposer;
 
 import java.time.LocalDate;

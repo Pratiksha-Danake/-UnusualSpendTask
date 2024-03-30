@@ -1,9 +1,9 @@
 package com.creditcard.domain.model.validator;
 
+import com.creditcard.domain.model.Category;
 import com.creditcard.domain.model.exception.InvalidCategoryException;
 import com.creditcard.domain.model.exception.InvalidCustomerIdException;
 import com.creditcard.domain.model.exception.InvalidTransactionIdException;
-import com.creditcard.domain.model.Category;
 
 public class TransactionValidator {
 

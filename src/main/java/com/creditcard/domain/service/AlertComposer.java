@@ -1,8 +1,8 @@
 package com.creditcard.domain.service;
 
-import com.creditcard.domain.dto.UnusualSpendCustomerDTO;
+import com.creditcard.dto.UnusualSpendCustomerDTO;
 import com.creditcard.domain.model.Category;
-import com.creditcard.domain.dto.UnusualSpend;
+import com.creditcard.dto.UnusualSpend;
 
 import java.util.List;
 import java.util.Map;

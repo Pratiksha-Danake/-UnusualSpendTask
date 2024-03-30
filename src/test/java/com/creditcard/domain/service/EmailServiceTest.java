@@ -1,4 +1,4 @@
-package com.creditcard.test;
+package com.creditcard.domain.service;
 
 import com.creditcard.domain.service.EmailService;
 import org.junit.jupiter.api.Assertions;

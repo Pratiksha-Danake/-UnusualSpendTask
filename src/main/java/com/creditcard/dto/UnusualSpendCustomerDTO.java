@@ -1,4 +1,4 @@
-package com.creditcard.domain.dto;
+package com.creditcard.dto;
 
 public class UnusualSpendCustomerDTO {
     String customerName;

@@ -1,13 +1,13 @@
-package com.creditcard.test;
+package com.creditcard;
 
 import com.creditcard.domain.CreditCard;
 import com.creditcard.domain.Customer;
-import com.creditcard.domain.dto.UnusualSpend;
+import com.creditcard.domain.model.exception.*;
+import com.creditcard.dto.UnusualSpend;
 import com.creditcard.domain.model.Category;
-import com.creditcard.domain.model.CreditCardManager;
+import com.creditcard.CreditCardManager;
 import com.creditcard.domain.model.CustomerManager;
 import com.creditcard.domain.model.Transaction;
-import com.creditcard.domain.model.exception.*;
 import org.junit.jupiter.api.Test;
 
 import javax.mail.MessagingException;

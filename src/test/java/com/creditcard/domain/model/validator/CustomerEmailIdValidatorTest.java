@@ -1,6 +1,7 @@
 package com.creditcard.domain.model.validator;
 
 import com.creditcard.domain.model.exception.InvalidCustomerEmailException;
+import com.creditcard.domain.model.validator.CustomerEmailIdValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package com.creditcard.test;
+package com.creditcard.domain.model;
 
 import com.creditcard.domain.model.exception.InvalidCustomerIdException;
 import com.creditcard.domain.model.exception.InvalidCustomerNameException;
