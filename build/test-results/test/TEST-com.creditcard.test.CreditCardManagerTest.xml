@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.creditcard.test.CreditCardManagerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-03-30T06:36:11" hostname="DESKTOP-GUO1275" time="0.344">
-  <properties/>
-  <testcase name="shouldAbleToSendEmailAlertToTheCustomerWhoHaveUnusualSpend()" classname="com.creditcard.test.CreditCardManagerTest" time="0.344"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[Error sending email: Local address contains illegal character
-]]></system-err>
-</testsuite>
