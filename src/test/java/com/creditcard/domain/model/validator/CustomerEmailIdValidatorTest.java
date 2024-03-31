@@ -1,11 +1,19 @@
 package com.creditcard.domain.model.validator;
 
 import com.creditcard.domain.model.exception.InvalidCustomerEmailException;
-import com.creditcard.domain.model.validator.CustomerEmailIdValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class CustomerEmailIdValidatorTest {
+
+    @Test
+    void shouldAbleToCreateInstanceOfCustomerEmailIdValidator() {
+        // arrange && act
+        CustomerEmailIdValidator customerEmailIdValidator = new CustomerEmailIdValidator();
+        // assert
+        Assertions.assertNotNull(customerEmailIdValidator);
+    }
+
     @Test
     void shouldBeAbleToReturnTrueForAllValidEmails() throws InvalidCustomerEmailException {
         // act && assert

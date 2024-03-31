@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Transaction.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpendAnalyzer</a> &gt; <a href="index.source.html" class="el_package">com.creditcard.domain.model</a> &gt; <span class="el_source">Transaction.java</span></div><h1>Transaction.java</h1><pre class="source lang-java linenums">package com.creditcard.domain.model;
+
+import com.creditcard.domain.model.exception.InvalidCategoryException;
+import com.creditcard.domain.model.exception.InvalidCustomerIdException;
+import com.creditcard.domain.model.exception.InvalidTransactionIdException;
+import com.creditcard.domain.model.validator.CustomerIdValidator;
+import com.creditcard.domain.model.validator.TransactionValidator;
+
+import java.time.LocalDate;
+
+public class Transaction {
+    private int id;
+    private int customerId;
+    private double amountSpend;
+    private Category category;
+    private LocalDate transactionDate;
+
+<span class="fc" id="L18">    private Transaction(int transactionId, int customerId, double amountSpend, Category category, LocalDate transactionDate) {</span>
+<span class="fc" id="L19">        this.id = transactionId;</span>
+<span class="fc" id="L20">        this.customerId = customerId;</span>
+<span class="fc" id="L21">        this.amountSpend = amountSpend;</span>
+<span class="fc" id="L22">        this.category = category;</span>
+<span class="fc" id="L23">        this.transactionDate = transactionDate;</span>
+<span class="fc" id="L24">    }</span>
+
+    public static Transaction create(int transactionId, int customerId, double amountSpend, Category category, LocalDate transactionDate) throws InvalidTransactionIdException, InvalidCustomerIdException, InvalidCategoryException {
+<span class="fc" id="L27">        Transaction transaction = null;</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        if (!TransactionValidator.isValidTransactionId(transactionId))</span>
+<span class="fc" id="L29">            throw new InvalidTransactionIdException(transactionId + &quot; is not valid..!&quot;);</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        else if (!CustomerIdValidator.isValidId(customerId))</span>
+<span class="fc" id="L31">            throw new InvalidCustomerIdException(customerId + &quot; is not valid..!&quot;);</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        else if (!TransactionValidator.isValidCategory(category))</span>
+<span class="fc" id="L33">            throw new InvalidCategoryException(category + &quot; is not valid..!&quot;);</span>
+        else
+<span class="fc" id="L35">            transaction = new Transaction(transactionId, customerId, amountSpend, category, transactionDate);</span>
+<span class="fc" id="L36">        return transaction;</span>
+    }
+
+    public LocalDate getTransactionDate() {
+<span class="fc" id="L40">        return transactionDate;</span>
+    }
+
+    public int getCustomerId() {
+<span class="fc" id="L44">        return customerId;</span>
+    }
+
+    public Category getCategory() {
+<span class="fc" id="L48">        return category;</span>
+    }
+
+    public double getAmountSpend() {
+<span class="fc" id="L52">        return amountSpend;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Customer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpendAnalyzer</a> &gt; <a href="index.source.html" class="el_package">com.creditcard.domain</a> &gt; <span class="el_source">Customer.java</span></div><h1>Customer.java</h1><pre class="source lang-java linenums">package com.creditcard.domain;
+
+import com.creditcard.domain.model.exception.InvalidCustomerEmailException;
+import com.creditcard.domain.model.exception.InvalidCustomerIdException;
+import com.creditcard.domain.model.exception.InvalidCustomerNameException;
+import com.creditcard.domain.model.validator.CustomerEmailIdValidator;
+import com.creditcard.domain.model.validator.CustomerIdValidator;
+import com.creditcard.domain.model.validator.CustomerNameValidator;
+
+import java.util.Objects;
+
+public class Customer {
+    private int id;
+    private String name;
+    private String email;
+    private CreditCard creditCard;
+
+<span class="fc" id="L18">    private Customer(int customerId, String customerName, String custommerEmail) {</span>
+<span class="fc" id="L19">        this.id = customerId;</span>
+<span class="fc" id="L20">        this.name = customerName;</span>
+<span class="fc" id="L21">        this.email = custommerEmail;</span>
+<span class="fc" id="L22">    }</span>
+
+    public static Customer create(int customerId, String customerName, String email) throws InvalidCustomerNameException, InvalidCustomerIdException, InvalidCustomerEmailException {
+<span class="fc" id="L25">        Customer customer = null;</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        if (!CustomerNameValidator.isValidName(customerName))</span>
+<span class="fc" id="L27">            throw new InvalidCustomerNameException(customerName + &quot; is invalid&quot;);</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        else if (!CustomerIdValidator.isValidId(customerId))</span>
+<span class="fc" id="L29">            throw new InvalidCustomerIdException(customerId + &quot; is invalid&quot;);</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        else if (!CustomerEmailIdValidator.isValidEmail(email))</span>
+<span class="fc" id="L31">            throw new InvalidCustomerEmailException(email + &quot; is not valid email&quot;);</span>
+        else
+<span class="fc" id="L33">            customer = new Customer(customerId, customerName, email);</span>
+<span class="fc" id="L34">        return customer;</span>
+    }
+
+    public int getId() {
+<span class="fc" id="L38">        return id;</span>
+    }
+
+    public String getName() {
+<span class="fc" id="L42">        return name;</span>
+    }
+
+    public String getEmail() {
+<span class="fc" id="L46">        return email;</span>
+    }
+
+    public CreditCard getCreditCard() {
+<span class="fc" id="L50">        return creditCard;</span>
+    }
+
+    public void setCreditCard(CreditCard creditCard) {
+<span class="fc" id="L54">        this.creditCard = creditCard;</span>
+<span class="fc" id="L55">    }</span>
+
+    @Override
+    public boolean equals(Object o) {
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        if (this == o) return true;</span>
+<span class="fc bfc" id="L60" title="All 4 branches covered.">        if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="fc" id="L61">        Customer customer = (Customer) o;</span>
+<span class="fc bfc" id="L62" title="All 6 branches covered.">        return id == customer.id &amp;&amp; Objects.equals(name, customer.name) &amp;&amp; Objects.equals(email, customer.email);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L67">        return Objects.hash(id, name, email);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

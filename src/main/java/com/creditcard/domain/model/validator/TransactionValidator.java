@@ -9,13 +9,13 @@ public class TransactionValidator {
 
     public static boolean isValidTransactionId(int transactionId) throws InvalidCustomerIdException, InvalidTransactionIdException {
         if (transactionId <= 0)
-            throw new InvalidTransactionIdException(transactionId);
+            return false;
         return true;
     }
 
-    public static boolean isvalidCategory(Category category) throws InvalidCategoryException {
+    public static boolean isValidCategory(Category category) throws InvalidCategoryException {
         if (category == null)
-            throw new InvalidCategoryException(category);
+            return false;
         return true;
     }
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.creditcard.domain.CustomerTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2024-03-31T17:30:28" hostname="DESKTOP-GUO1275" time="0.143">
+  <properties/>
+  <testcase name="shouldThrowInvalidCustomerIdExceptionWhenCustomerIdPassedIsNegative()" classname="com.creditcard.domain.CustomerTest" time="0.064"/>
+  <testcase name="shouldThrowInvalidCustomerNameExceptionWhenCustomerNamePassedIsNotInCorrectFormat()" classname="com.creditcard.domain.CustomerTest" time="0.004"/>
+  <testcase name="shouldBeAbleToReturnFalseWhenCustomerIdForTwoInstanceIsDifferent()" classname="com.creditcard.domain.CustomerTest" time="0.005"/>
+  <testcase name="shouldThrowInvalidCustomerNameExceptionWhenNullCustomerNameIsPassed()" classname="com.creditcard.domain.CustomerTest" time="0.002"/>
+  <testcase name="shouldThrowInvalidCustomerIdExceptionWhenCustomerIdPassedIsZero()" classname="com.creditcard.domain.CustomerTest" time="0.002"/>
+  <testcase name="shouldBeAbleToReturnSameHashcodeForEqualInstancesOfCustomerClass()" classname="com.creditcard.domain.CustomerTest" time="0.004"/>
+  <testcase name="shouldBeAbleToReturnFalseWhenCustomerNameForTwoInstanceIsDifferent()" classname="com.creditcard.domain.CustomerTest" time="0.004"/>
+  <testcase name="shouldBeAbleToReturnFalseWhenCustomerEmailForTwoInstanceIsDifferent()" classname="com.creditcard.domain.CustomerTest" time="0.003"/>
+  <testcase name="shouldThrowInvalidCustomerNameExceptionWhenEmptyCustomerNameIsPassed()" classname="com.creditcard.domain.CustomerTest" time="0.001"/>
+  <testcase name="shouldBeReturnTrueWhenComparisonIsBetweenSameInstance()" classname="com.creditcard.domain.CustomerTest" time="0.001"/>
+  <testcase name="shouldThrowInvalidCustomerEmailExceptionWhenCustomerEmailPassedIsInvalid()" classname="com.creditcard.domain.CustomerTest" time="0.011"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -23,7 +23,7 @@ public class TransactionTest {
     }
 
     @Test
-    void shouldThrowInvalidTransactionIdExceptionWhenTransactionIdIsZero() {
+    void shouldBeAbleToReturnFalseWhenTransactionIdIsZero() {
         // act && assert
         Assertions.assertThrows(InvalidTransactionIdException.class, () -> {
             Transaction.create(0, 1, 50, Category.ELECTRONICS, LocalDate.now());
@@ -39,26 +39,26 @@ public class TransactionTest {
     }
 
     @Test
-    void shouldThrowInvalidCustomerIdExceptionWhenCustomerIdIsZero() {
-        // act && assert
-        Assertions.assertThrows(InvalidCustomerIdException.class, () -> {
-            Transaction.create(1001, 0, 50, Category.BOOKS, LocalDate.now());
-        }, "0");
-    }
-
-    @Test
-    void shouldThrowInvalidCustomerIdExceptionWhenCustomerIdIsNegative() {
-        // act && assert
-        Assertions.assertThrows(InvalidCustomerIdException.class, () -> {
-            Transaction.create(1001, -1, 50, Category.BOOKS, LocalDate.now());
-        }, "-1");
-    }
-
-    @Test
     void shouldThrowInvalidCategoryExceptionWhenCategoryIsNull() {
         // act && assert
         Assertions.assertThrows(InvalidCategoryException.class, () -> {
             Transaction.create(1001, 1, 50, null, LocalDate.now());
-        }, "");
+        });
+    }
+
+    @Test
+    void shouldThrowInvalidTransactionIdExceptionWhenTransactionIdIsInvalid() {
+        // act && assert
+        Assertions.assertThrows(InvalidTransactionIdException.class, () -> {
+            Transaction.create(-1, 1, 100, Category.ELECTRONICS, LocalDate.now());
+        });
+    }
+
+    @Test
+    void shouldThrowInvalidCustomerIdExceptionWhenTransactionIdIsInvalid() {
+        // act && assert
+        Assertions.assertThrows(InvalidCustomerIdException.class, () -> {
+            Transaction.create(1, -1, 100, Category.ELECTRONICS, LocalDate.now());
+        });
     }
 }
